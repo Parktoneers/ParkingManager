@@ -1,7 +1,5 @@
 import sqlite3
-
 from Account import Account
-
 
 class DatabaseHandler():
 
@@ -86,7 +84,7 @@ class DatabaseHandler():
             cursor.execute("DELETE FROM Accounts WHERE PhoneNumber = ?", phoneNumber)
             self.db.commit()
 
-    def getAccount(self, uid: [int, int, int, int], phoneNumber: str):
+    def getAccount(self, uid: [int, int, int, int] = None, phoneNumber: str = None):
 
         cursor = self.db.cursor()
         records: list = None
