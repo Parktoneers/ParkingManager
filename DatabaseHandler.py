@@ -3,8 +3,8 @@ import sqlite3
 from Account import Account
 from Place import Place
 
-
 class DatabaseHandler:
+
     db: sqlite3.Connection
 
     def __init__(self):
@@ -111,6 +111,7 @@ class DatabaseHandler:
             cursor.execute(f"DELETE FROM Accounts WHERE PhoneNumber = phoneNumber")
             self.db.commit()
 
+
     def deletePlace(self, place: Place):
         cursor = self.db.cursor()
         cursor.execute(f"DELETE FROM Places WHERE ParkingSpace = ?", (place.parkingSpace,))
@@ -121,6 +122,7 @@ class DatabaseHandler:
         cursor.execute(f"SELECT * FROM Places WHERE ParkingSpace = ?", (parkingSpace,))
         place = cursor.fetchall()[0]
         return Place(place[0], place[1], place[2])
+
 
     def getFreePlace(self):
         cursor = self.db.cursor()
